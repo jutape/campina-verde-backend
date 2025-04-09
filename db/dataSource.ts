@@ -7,7 +7,7 @@ import { Event } from "./entities/Event.js";
 
 
 const dataSource = new DataSource({
-  type: 'mysql',
+  type: 'postgres',
   host: process.env.DB_HOST_NAME,
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USER_NAME,
@@ -16,6 +16,7 @@ const dataSource = new DataSource({
   entities: [User, Role, Permission, Profile, Event],
   synchronize: true,
   logging: false,
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
 });
 
 dataSource.initialize()
