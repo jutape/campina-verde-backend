@@ -40,7 +40,7 @@ const createUser = async (payload: NSUser.Item) => {
     const profile = Profile.create({
       firstName,
       lastName: lastName.join(" "),
-      dateOfBirth: payload.dateOfBirth || '',
+      dateOfBirth: payload.dateOfBirth,
       status: payload?.status
     })
     await transaction.save(profile)
